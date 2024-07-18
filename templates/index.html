@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>操作ui</title>
+    <style>
+      .container {
+        display: flex;
+        padding: 20px;
+        justify-content: center;
+      }
+      .container2 {
+        display: flex;
+        justify-content: center;
+      }
+      .text {
+        padding: 10px; /* 设置输入框的内边距 */
+        margin-right: 5px; /* 给输入框添加一些内边距 */
+      }
+      .input-box {
+        margin-right: 10px; /* 给输入框添加一些内边距 */
+      }
+      input[type="text"] {
+        width: 200px; /* 设置输入框的宽度 */
+        padding: 10px; /* 设置输入框的内边距 */
+        border: 1px solid #ccc; /* 设置输入框的边框 */
+        border-radius: 5px; /* 设置输入框的圆角 */
+      }
+      input[type="text2"] {
+        width: 50px; /* 设置输入框的宽度 */
+        padding: 10px; /* 设置输入框的内边距 */
+        border: 1px solid #ccc; /* 设置输入框的边框 */
+        border-radius: 5px; /* 设置输入框的圆角 */
+      }
+      button {
+        width: 200px; /* 设置输入框的宽度 */
+        padding: 10px; /* 设置输入框的内边距 */
+        border: 1px solid #ccc; /* 设置输入框的边框 */
+        border-radius: 5px; /* 设置输入框的圆角 */
+      }
+      button:hover {
+        background-color: #e2e2e2; /* 鼠标悬停时，按钮背景色变为灰色 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-box">
+        <label for="input1">延迟s:</label>
+        <input type="text2" id="input1" name="input1" value="1" />
+        <input type="text2" id="input2" name="input2" value="3" />
+      </div>
+      <div class="input-box">
+        <label for="input3">appid:</label>
+        <input
+          type="text"
+          id="input3"
+          name="input3"
+          value="n3aebll0jtw44hoeclz8uawkrwh8ad0e"
+        />
+      </div>
+      <div class="input-box">
+        <label for="input6">iplink:</label>
+        <input
+          type="text"
+          id="input6"
+          name="input6"
+          value="代理链接,国外的"
+        />
+      </div>
+      <div class="input-box">
+        <label for="input1">图片概率:</label>
+        <input type="text2" id="input4" name="input4" value="30" />
+      </div>
+      <div class="input-box">
+        <label for="input1">评论次数:</label>
+        <input type="text2" id="input5" name="input5" value="3" />
+      </div>
+      <div class="input-box">
+        <button id="submit">开始评论</button>
+      </div>
+    </div>
+    <div class="container2">
+      <textarea class="text" rows="15" cols="40" id="text1">私钥一行一个(sol私钥长度88)</textarea
+      >
+      <textarea class="text" rows="15" cols="40" id="text2">
+HE9EX4VVR8CYubG6PDsrbq556snM2Qg6A9j1Xhuw3wxf
+Am2e9BS7ZdKpmWxYUPUTuTug95PdWSCaNdSQeLfbzQxE
+FeovbBDBidgkmhanFnc17fBzuiUVs8oBf7BEMy93nSci
+75MNUYbRqSqDn9ymofGUDRoNqZYhkZKPxmd9V8JP58WH
+BofUaicrotULuvPQoTm5FhJTuJJnXd9iik8nM8CJVzme</textarea
+      >
+      <textarea class="text" rows="15" cols="40" id="text3">
+加油干
+很不错
+冲冲冲</textarea
+      >
+      <textarea class="text" rows="15" cols="40" id="text4">
+https://pump.mypinata.cloud/ipfs/QmcHzRZea7HdW8LGdccW3aYKgApVWcczm9XXBbATYmccLL
+https://pump.mypinata.cloud/ipfs/QmQVu19WbPCo666ZNWi5eUtXWtntKH3kpBiQPhfCUx3zjn
+https://pump.mypinata.cloud/ipfs/QmcsuK8PVZgL1y4fC3V7hwLTFW3aTQ9p54emLx414nj6w8</textarea
+      >
+    </div>
+    <h5><span id="status"></span></h5>
+    <script>
+      function randate(num) {
+        // num为0-1
+        var randomNumber = Math.random();
+        if (randomNumber < num) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function getRandomNumber(min, max) {
+        if (min > max) {
+          // 如果最小值大于最大值，交换它们的值
+          var temp = min;
+          min = max;
+          max = temp;
+        }
+        // 生成随机数
+        return Math.random() * (max - min) + min;
+      }
+      function randomInt(min, max) {
+        return Math.floor(getRandomNumber(min, max + 1));
+      }
+      function randChoice(li) {
+        let min = 0;
+        let max = li.length;
+        let r = Math.floor(Math.random() * (max - min)) + min;
+        return li[r];
+      }
+      document.getElementById("submit").addEventListener("click", function () {
+        var delay1 = document.getElementById("input1").value;
+        var delay2 = document.getElementById("input2").value;
+        var appid = document.getElementById("input3").value;
+        var picate = document.getElementById("input4").value;
+        var replyCount = document.getElementById("input5").value;
+        var iplink = document.getElementById("input6").value;
+        var text1 = document.getElementById("text1").value;
+        var text2 = document.getElementById("text2").value;
+        var text3 = document.getElementById("text3").value;
+        var text4 = document.getElementById("text4").value;
+        var status = document.getElementById("status");
+
+        status.innerText = "开始评论...";
+
+        var randomDelay = randomInt(parseInt(delay1), parseInt(delay2));
+        var privateKeys = text1.split("\n");
+        var mints = text2.split("\n");
+        var texts = text3.split("\n");
+        var fileUris = text4.split("\n");
+
+        var index = 0;
+        var interval = setInterval(function () {
+          if (index < parseInt(replyCount)) {
+            var privateKey = randChoice(privateKeys);
+            var mint = randChoice(mints);
+            var text = randChoice(texts);
+            var fileUri = "";
+            if (randate(parseInt(picate) / 100)) {
+              fileUri = randChoice(fileUris);
+            }
+            status.innerText =
+              "正在评论..." +
+              "\n私钥：" +
+              privateKey +
+              "\n币地址：" +
+              mint +
+              "\n文字内容：" +
+              text +
+              "\n图片地址：" +
+              fileUri;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://127.0.0.1:31156/action");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                status.innerText =
+                  "评论结果" +
+                  "\n私钥：" +
+                  privateKey +
+                  "\n币地址：" +
+                  mint +
+                  "\n评论状态：" +
+                  xhr.responseText;
+              }
+            };
+            var data = {
+              appid: appid,
+              text: text,
+              mint: mint,
+              privateKey: privateKey,
+              fileUri: fileUri,
+              iplink: iplink,
+            };
+            xhr.send(JSON.stringify(data));
+            index++;
+          } else {
+            clearInterval(interval);
+          }
+        }, randomDelay * 1000);
+      });
+    </script>
+  </body>
+</html>
